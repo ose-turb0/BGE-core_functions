@@ -98,46 +98,6 @@ def dice(in_obj):
 
 
 
-#credit to that dude that wrote this, even though i dont use it xD
-def getDimensions(in_obj):
-    
-    
-    obj = in_obj
-    mesh = obj.meshes[0]
-
-    n_verts = mesh.getVertexArrayLength(0)
-
-
-    def retrieveExtremalValues(mesh, n_verts):
-    
-        x1, y1, z1 = mesh.getVertex(0, 0).XYZ
-        x2, y2, z2 = mesh.getVertex(0, 1).XYZ
-
-    
-        mins = [min(x1, x2), min(y1, y2), min(z1, z2)]
-        maxs = [max(x1, x2), max(y1, y2), max(z1, z2)]
-
-        for n in range(n_verts - 2):
-    
-            xyz = mesh.getVertex(0, n+2).XYZ
-
-            for i in range(3):
-                mins[i] = min(mins[i], xyz[i])
-                maxs[i] = max(maxs[i], xyz[i])
-
-
-        return mins + maxs
-
-    if n_verts < 2:
-        dimensions = [0, 0, 0]
-
-    else:
-    
-        xm, ym, zm, xM, yM, zM = retrieveExtremalValues(mesh, n_verts)
-
-        dimensions = [xM-xm, yM-ym, zM-zm]
-        
-        return dimensions
 
 
 def make_joint(in_joint):
